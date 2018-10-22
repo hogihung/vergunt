@@ -1,9 +1,9 @@
 # vergunt (Vim, Elixir, Ruby, Go, Git, Ubuntu, NodeJS, and TMux)
 #
-# VERSION 1.0.2
+# VERSION 1.2.0
 #
 # Build image example:
-#   docker build -t hogihung/vergunt:1.0.2 .
+#   docker build -t hogihung/vergunt:1.2.0 .
 #
 # This Dockerfile is used to build a base development environment with vim, go,
 # elixir, ruby, git, tmux, and node js all running on Ubuntu 18.10 base image.
@@ -12,7 +12,7 @@
 #   vim, rvm, kiex, ruby, elixir (with erlang), go, git, node and tmux.
 #
 # At the time of this creation, we have the following versions:
-#   RVM => 1.29.4, Vim => 8.1, Ruby => (2.5.1, 2.4.1, 1.3.5),
+#   RVM => 1.29.4, Vim => 8.1, Ruby => (2.5.3, 2.4.1, 1.3.5),
 #   Elixir => 1.7.3, Git => 2.19.1, Go => 1.11.1, Node => 10.12.0,
 #   Ubuntu => 18.10, TMux => 2.7
 #
@@ -103,7 +103,7 @@ RUN echo bundler >> /usr/local/rvm/gemsets/global.gems
 RUN echo "rvm_install_on_use_flag=1\nrvm_gemset_create_on_use_flag=1\nrvm_quiet_curl_flag=1" > ~/.rvmrc
 
 # Preinstall some ruby versions
-ENV PREINSTALLED_RUBIES "2.5.1 2.4.1 2.3.5"
+ENV PREINSTALLED_RUBIES "2.5.3 2.4.1 2.3.5"
 RUN /bin/bash -l -c 'for version in $PREINSTALLED_RUBIES; do echo "Now installing Ruby $version"; rvm install $version; rvm cleanup all; done'
 
 # Add .bashrc.local file with aliases to address RVM and Elixir conflict due to PATH

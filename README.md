@@ -6,7 +6,7 @@ This docker image contains the following development tools:
   - Vim             [8.1.477]
   - Elixir          [1.7.3]
   - RVM             [1.29.4]
-  - Ruby            [2.5.1 (2.4.1, 2.3.5)]
+  - Ruby            [2.5.3 (2.4.1, 2.3.5)]
   - Go              [1.11.1]
   - Git             [2.19.1]
   - Ubuntu (for OS) [18.10]
