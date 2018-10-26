@@ -1,9 +1,9 @@
 # vergunt (Vim, Elixir, Ruby, Go, Git, Ubuntu, NodeJS, and TMux)
 #
-# VERSION 1.2.0
+# VERSION 1.3.0
 #
 # Build image example:
-#   docker build -t hogihung/vergunt:1.2.0 .
+#   docker build -t hogihung/vergunt:1.3.0 .
 #
 # This Dockerfile is used to build a base development environment with vim, go,
 # elixir, ruby, git, tmux, and node js all running on Ubuntu 18.10 base image.
@@ -16,6 +16,8 @@
 #   Elixir => 1.7.3, Git => 2.19.1, Go => 1.11.1, Node => 10.12.0,
 #   Ubuntu => 18.10, TMux => 2.7
 #
+# This image now has the customized Vim built-in instead of manually adding
+# afterwards.
 #
 # Running a container example:
 #   docker run -it --name=vergun --hostname=ruby-dev --rm [image-id-here]
@@ -32,7 +34,7 @@ WORKDIR /usr/local/development
 
 # Update and install all of the required packages.
 RUN apt-get update -y && \
-    apt-get install -y curl tar tree wget && \
+    apt-get install -y curl htop tar tree wget && \
     apt-get install -y software-properties-common
 
 # Update Ubuntu, Install Vim, Tmux and Git
@@ -114,6 +116,17 @@ RUN touch $HOME/.bashrc.local && \
     echo "" >> $HOME/.bashrc && \
     echo "# Pull in aliases and other settings from bashrc.local file" >> $HOME/.bashrc && \
     echo "source $HOME/.bashrc.local" >> $HOME/.bashrc
+
+# Customize vim based off of repo: https://github.com/hogihung/docker-vim-demo
+RUN cd /root && \
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
+    git clone https://github.com/lifepillar/vim-solarized8.git ~/.vim/pack/themes/opt/solarized8 && \
+    apt-get install -y dos2unix
+
+COPY dot_vimrc /root/.vimrc
+
+RUN dos2unix /root/.vimrc && \
+    vim +PluginInstall +qall
 
 # Login shell by default so rvm is sourced automatically and 'rvm use' can be used
 ENTRYPOINT /bin/bash -l
