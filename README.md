@@ -14,6 +14,10 @@ This docker image contains the following development tools:
   - Tmux            [2.7]
 
 
+**UPDATE:** building of image now includes configuration of Vim.
+
+
+
 ## CLONE THE REPO
 
 ```
@@ -27,7 +31,7 @@ cd vergunt
 ## BUILD THE DOCKER IMAGE
 
 ```
-docker build -t vergunt:1.0.0
+docker build -t vergunt:1.3.0
 ```
 
 
