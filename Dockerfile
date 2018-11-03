@@ -1,9 +1,9 @@
 # vergunt (Vim, Elixir, Ruby, Go, Git, Ubuntu, NodeJS, and TMux)
 #
-# VERSION 1.3.0
+# VERSION 1.3.1
 #
 # Build image example:
-#   docker build -t hogihung/vergunt:1.3.0 .
+#   docker build -t hogihung/vergunt:1.3.1 .
 #
 # This Dockerfile is used to build a base development environment with vim, go,
 # elixir, ruby, git, tmux, and node js all running on Ubuntu 18.10 base image.
